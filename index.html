@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ООО «Ракурс» — Разработка веб-приложений в Барнауле</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Inter', system-ui, -apple-system, sans-serif; }
+  .nav-scrolled { background: rgba(255,255,255,0.85); backdrop-filter: blur(12px); box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
+  .nav-transparent { background: transparent; }
+  .hover-lift { transition: all 0.3s ease; }
+  .hover-lift:hover { transform: translateY(-4px); box-shadow: 0 25px 50px -12px rgba(99,102,241,0.15); }
+  .hero-grad { background: radial-gradient(ellipse at center top, rgba(99,102,241,0.15), transparent 60%); }
+  .bar { transition: height 0.8s ease; }
+  @keyframes fadeUp { from { opacity:0; transform: translateY(20px);} to { opacity:1; transform: translateY(0);} }
+  .fade-up { animation: fadeUp 0.6s ease forwards; }
+</style>
+</head>
+<body class="min-h-screen bg-white text-slate-900 antialiased">
+
+<!-- ===== НАВИГАЦИЯ ===== -->
+<header id="nav" class="fixed inset-x-0 top-0 z-50 nav-transparent transition-all duration-300">
+  <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+    <a href="#" class="flex items-center gap-2.5">
+      <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 shadow-lg shadow-indigo-500/30">
+        <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20L12 4l9 16"/><path d="M7 14h10"/></svg>
+      </div>
+      <div class="leading-tight">
+        <div class="text-base font-bold">Ракурс</div>
+        <div class="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">Web Studio</div>
+      </div>
+    </a>
+    <nav class="hidden items-center gap-8 lg:flex">
+      <a href="#about" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">О компании</a>
+      <a href="#services" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Услуги</a>
+      <a href="#portfolio" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Портфолио</a>
+      <a href="#process" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Процесс</a>
+      <a href="#reviews" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Отзывы</a>
+      <a href="#contact" class="text-sm font-medium text-slate-600 hover:text-indigo-600 transition">Контакты</a>
+    </nav>
+    <div class="hidden lg:block">
+      <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white hover:bg-slate-800 transition">
+        Обсудить проект
+        <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+    <button id="burger" class="lg:hidden p-2">
+      <svg id="burger-open" class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      <svg id="burger-close" class="h-6 w-6 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white lg:hidden">
+    <div class="space-y-1 px-6 py-4">
+      <a href="#about" class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">О компании</a>
+      <a href="#services" class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Услуги</a>
+      <a href="#portfolio" class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Портфолио</a>
+      <a href="#process" class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Процесс</a>
+      <a href="#reviews" class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Отзывы</a>
+      <a href="#contact" class="block rounded-lg px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-50">Контакты</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ===== HERO ===== -->
+<section class="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-28">
+  <div class="absolute inset-0 -z-10 bg-gradient-to-b from-indigo-50/60 via-white to-white"></div>
+  <div class="absolute -top-40 left-1/2 -z-10 h-[600px] w-[900px] -translate-x-1/2 rounded-full bg-gradient-to-br from-indigo-200/60 via-violet-200/40 to-fuchsia-100/40 blur-3xl"></div>
+
+  <div class="mx-auto grid max-w-7xl items-center gap-12 px-6 lg:grid-cols-12 lg:px-10">
+    <div class="lg:col-span-7">
+      <div class="inline-flex items-center gap-2 rounded-full border border-indigo-100 bg-white px-3 py-1.5 text-xs font-semibold text-indigo-700 shadow-sm">
+        <span class="flex h-1.5 w-1.5 rounded-full bg-indigo-500"></span>
+        Веб-студия №1 в Алтайском крае · 2012
+      </div>
+      <h1 class="mt-5 text-4xl font-bold leading-[1.05] tracking-tight text-slate-900 sm:text-5xl lg:text-6xl">
+        Разрабатываем <span class="bg-gradient-to-r from-indigo-600 via-violet-600 to-fuchsia-600 bg-clip-text text-transparent">веб-приложения</span>,
+        <br class="hidden sm:block"> которые работают на результат
+      </h1>
+      <p class="mt-6 max-w-xl text-lg leading-relaxed text-slate-600">
+        ООО «Ракурс» — команда инженеров и дизайнеров из Барнаула. Создаём корпоративные сайты,
+        SaaS-продукты и CRM под бизнес-задачи. От прототипа до релиза и поддержки.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center gap-3">
+        <a href="#contact" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3.5 text-sm font-semibold text-white shadow-xl shadow-slate-900/20 hover:bg-slate-800 transition">
+          Оставить заявку
+          <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+        <a href="#portfolio" class="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-6 py-3.5 text-sm font-semibold text-slate-900 hover:bg-slate-50 transition">
+          Смотреть работы
+        </a>
+      </div>
+      <div class="mt-10 grid max-w-lg grid-cols-3 gap-6">
+        <div><div class="text-2xl font-bold sm:text-3xl">12+</div><div class="mt-1 text-xs font-medium uppercase tracking-wider text-slate-500">лет опыта</div></div>
+        <div><div class="text-2xl font-bold sm:text-3xl">240</div><div class="mt-1 text-xs font-medium uppercase tracking-wider text-slate-500">проектов</div></div>
+        <div><div class="text-2xl font-bold sm:text-3xl">35</div><div class="mt-1 text-xs font-medium uppercase tracking-wider text-slate-500">специалистов</div></div>
+      </div>
+    </div>
+
+    <div class="relative lg:col-span-5">
+      <div class="relative mx-auto max-w-md">
+        <div class="absolute -left-6 top-8 z-20 w-56 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
+          <div class="flex items-center gap-2">
+            <div class="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-100 text-emerald-600">
+              <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="text-xs font-semibold">Проект сдан</div>
+          </div>
+          <div class="mt-3 text-sm text-slate-600">CRM для «АлтайТранс»</div>
+          <div class="mt-3 h-1.5 w-full overflow-hidden rounded-full bg-slate-100">
+            <div class="h-full w-5/6 rounded-full bg-gradient-to-r from-emerald-400 to-emerald-500"></div>
+          </div>
+        </div>
+        <div class="absolute -right-4 bottom-12 z-20 w-60 rounded-2xl border border-slate-200 bg-white p-4 shadow-xl">
+          <div class="flex items-center justify-between">
+            <div class="text-xs font-semibold text-slate-500">Lighthouse</div>
+            <div class="text-xs font-bold text-emerald-600">98 / 100</div>
+          </div>
+          <div class="mt-3 space-y-2">
+            <div class="flex items-center gap-2"><div class="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[95%] rounded-full bg-indigo-500"></div></div><span class="w-20 text-right text-[11px] font-medium text-slate-600">Performance</span></div>
+            <div class="flex items-center gap-2"><div class="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[92%] rounded-full bg-violet-500"></div></div><span class="w-20 text-right text-[11px] font-medium text-slate-600">A11y</span></div>
+            <div class="flex items-center gap-2"><div class="h-1.5 flex-1 overflow-hidden rounded-full bg-slate-100"><div class="h-full w-[98%] rounded-full bg-fuchsia-500"></div></div><span class="w-20 text-right text-[11px] font-medium text-slate-600">SEO</span></div>
+          </div>
+        </div>
+
+        <div class="relative rounded-3xl border border-slate-200 bg-white p-3 shadow-2xl shadow-indigo-500/10">
+          <div class="flex items-center gap-1.5 border-b border-slate-100 px-3 py-2.5">
+            <span class="h-2.5 w-2.5 rounded-full bg-rose-400"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-amber-400"></span>
+            <span class="h-2.5 w-2.5 rounded-full bg-emerald-400"></span>
+            <div class="ml-3 flex-1 rounded-md bg-slate-100 px-3 py-1 text-[10px] font-medium text-slate-500">rakurs.studio/dashboard</div>
+          </div>
+          <div class="grid grid-cols-3 gap-3 p-4">
+            <div class="col-span-3 rounded-2xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500 p-5 text-white">
+              <div class="text-xs font-medium opacity-80">Выручка, месяц</div>
+              <div class="mt-1 text-2xl font-bold">₽ 1 248 900</div>
+              <div class="mt-2 inline-flex items-center gap-1 rounded-full bg-white/20 px-2 py-0.5 text-[10px] font-semibold">▲ 24,8%</div>
+            </div>
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-3"><div class="h-8 w-8 rounded-lg bg-gradient-to-br from-sky-400 to-cyan-500"></div><div class="mt-2 text-lg font-bold">342</div><div class="text-[10px] font-medium uppercase text-slate-500">Заказы</div></div>
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-3"><div class="h-8 w-8 rounded-lg bg-gradient-to-br from-amber-400 to-orange-500"></div><div class="mt-2 text-lg font-bold">186</div><div class="text-[10px] font-medium uppercase text-slate-500">Клиенты</div></div>
+            <div class="rounded-xl border border-slate-100 bg-slate-50/50 p-3"><div class="h-8 w-8 rounded-lg bg-gradient-to-br from-emerald-400 to-teal-500"></div><div class="mt-2 text-lg font-bold">8,4%</div><div class="text-[10px] font-medium uppercase text-slate-500">Конверсия</div></div>
+            <div class="col-span-3 rounded-xl border border-slate-100 p-3">
+              <div class="mb-2 flex items-center justify-between"><div class="text-xs font-semibold text-slate-700">Продажи</div><div class="text-[10px] text-slate-500">8 недель</div></div>
+              <div class="flex h-20 items-end gap-1.5" id="chart-bars"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="mx-auto mt-20 max-w-7xl px-6 lg:px-10">
+    <div class="rounded-3xl border border-slate-200 bg-white/60 p-6 backdrop-blur">
+      <div class="mb-4 text-center text-xs font-semibold uppercase tracking-[0.2em] text-slate-500">Нам доверяют</div>
+      <div class="grid grid-cols-2 items-center gap-6 text-center sm:grid-cols-3 lg:grid-cols-6">
+        <div class="text-base font-bold text-slate-400">АлтайТранс</div>
+        <div class="text-base font-bold text-slate-400">СибирьХлеб</div>
+        <div class="text-base font-bold text-slate-400">БарнаулМед</div>
+        <div class="text-base font-bold text-slate-400">АлтайСтрой</div>
+        <div class="text-base font-bold text-slate-400">Ритейл+</div>
+        <div class="text-base font-bold text-slate-400">ТехноСервис</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== О КОМПАНИИ ===== -->
+<section id="about" class="py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="grid items-start gap-12 lg:grid-cols-12">
+      <div class="lg:col-span-5">
+        <div class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">О компании</div>
+        <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">ООО «Ракурс» — IT-компания полного цикла в Барнауле</h2>
+        <p class="mt-5 text-lg leading-relaxed text-slate-600">Создаём цифровые продукты для малого и среднего бизнеса по всей России. Наш подход — сочетание глубокого анализа, современного дизайна и надёжной технологической базы.</p>
+        <div class="mt-8 space-y-3">
+          <div class="flex items-start gap-3"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-sm font-medium">Разработка под ключ: от идеи до запуска</span></div>
+          <div class="flex items-start gap-3"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-sm font-medium">Постпроектная поддержка и развитие</span></div>
+          <div class="flex items-start gap-3"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-sm font-medium">Фиксированные сроки и прозрачная смета</span></div>
+          <div class="flex items-start gap-3"><div class="mt-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-emerald-100 text-emerald-600"><svg class="h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><polyline points="20 6 9 17 4 12"/></svg></div><span class="text-sm font-medium">Современный стек: React, Next.js, Node.js, Python</span></div>
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="grid gap-5 sm:grid-cols-2">
+          <div class="hover-lift rounded-3xl border border-slate-200 bg-white p-6 sm:translate-y-6">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/></svg></div>
+            <h3 class="mt-5 text-lg font-bold">Фокус на результате</h3><p class="mt-2 text-sm text-slate-600">Не просто пишем код — решаем бизнес-задачи. KPI, аналитика, рост выручки.</p>
+          </div>
+          <div class="hover-lift rounded-3xl border border-slate-200 bg-white p-6">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg></div>
+            <h3 class="mt-5 text-lg font-bold">Своя команда</h3><p class="mt-2 text-sm text-slate-600">35 специалистов в штате: аналитики, дизайнеры, фронтенд, бэкенд, QA.</p>
+          </div>
+          <div class="hover-lift rounded-3xl border border-slate-200 bg-white p-6">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/></svg></div>
+            <h3 class="mt-5 text-lg font-bold">Быстрый старт</h3><p class="mt-2 text-sm text-slate-600">Первый результат — через 2 недели. Работаем по спринтам с демо.</p>
+          </div>
+          <div class="hover-lift rounded-3xl border border-slate-200 bg-white p-6 sm:-translate-y-6">
+            <div class="flex h-11 w-11 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-violet-500 text-white"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18h6"/><path d="M15.09 14c.18-.98.65-1.74 1.41-2.5A4.65 4.65 0 0 0 18 8 6 6 0 0 0 6 8c0 1 .23 2.23 1.5 3.5"/></svg></div>
+            <h3 class="mt-5 text-lg font-bold">Экспертиза 12 лет</h3><p class="mt-2 text-sm text-slate-600">С 2012 года в веб-разработке. 240+ проектов в 18 отраслях.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== УСЛУГИ ===== -->
+<section id="services" class="relative py-20 lg:py-28 bg-gradient-to-b from-white via-slate-50 to-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="mx-auto max-w-2xl text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">Услуги</div>
+      <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Что мы делаем</h2>
+      <p class="mt-4 text-lg text-slate-600">Полный спектр услуг по созданию и развитию цифровых продуктов</p>
+    </div>
+    <div class="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+      <!-- 6 cards -->
+      <div class="group hover-lift rounded-3xl border border-slate-200 bg-white p-7 relative overflow-hidden">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+        <h3 class="mt-5 text-xl font-bold">Веб-приложения</h3><p class="mt-2 text-sm text-slate-600">Сложные SaaS, CRM, ERP и личные кабинеты. React, Next.js, Node.js.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4"><span class="text-sm font-bold">от 250 000 ₽</span><span class="text-sm font-semibold text-indigo-600">Подробнее →</span></div>
+        <div class="absolute right-4 top-4 text-xs font-bold text-slate-300">01</div>
+      </div>
+      <div class="group hover-lift rounded-3xl border border-slate-200 bg-white p-7 relative overflow-hidden">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/></svg></div>
+        <h3 class="mt-5 text-xl font-bold">Корпоративные сайты</h3><p class="mt-2 text-sm text-slate-600">Современный дизайн, скорость, SEO. Адаптив под все устройства.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4"><span class="text-sm font-bold">от 80 000 ₽</span><span class="text-sm font-semibold text-indigo-600">Подробнее →</span></div>
+        <div class="absolute right-4 top-4 text-xs font-bold text-slate-300">02</div>
+      </div>
+      <div class="group hover-lift rounded-3xl border border-slate-200 bg-white p-7 relative overflow-hidden">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="2" width="14" height="20" rx="2"/></svg></div>
+        <h3 class="mt-5 text-xl font-bold">Мобильные приложения</h3><p class="mt-2 text-sm text-slate-600">iOS и Android на React Native и Flutter. От прототипа до релиза.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4"><span class="text-sm font-bold">от 300 000 ₽</span><span class="text-sm font-semibold text-indigo-600">Подробнее →</span></div>
+        <div class="absolute right-4 top-4 text-xs font-bold text-slate-300">03</div>
+      </div>
+      <div class="group hover-lift rounded-3xl border border-slate-200 bg-white p-7 relative overflow-hidden">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10"/></svg></div>
+        <h3 class="mt-5 text-xl font-bold">UI/UX дизайн</h3><p class="mt-2 text-sm text-slate-600">Исследования, прототипы, дизайн-системы. Делаем удобные интерфейсы.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4"><span class="text-sm font-bold">от 40 000 ₽</span><span class="text-sm font-semibold text-indigo-600">Подробнее →</span></div>
+        <div class="absolute right-4 top-4 text-xs font-bold text-slate-300">04</div>
+      </div>
+      <div class="group hover-lift rounded-3xl border border-slate-200 bg-white p-7 relative overflow-hidden">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="3" width="20" height="8" rx="2"/><rect x="2" y="13" width="20" height="8" rx="2"/></svg></div>
+        <h3 class="mt-5 text-xl font-bold">Поддержка и DevOps</h3><p class="mt-2 text-sm text-slate-600">Хостинг, мониторинг, CI/CD, развитие проекта после запуска.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4"><span class="text-sm font-bold">от 15 000 ₽/мес</span><span class="text-sm font-semibold text-indigo-600">Подробнее →</span></div>
+        <div class="absolute right-4 top-4 text-xs font-bold text-slate-300">05</div>
+      </div>
+      <div class="group hover-lift rounded-3xl border border-slate-200 bg-white p-7 relative overflow-hidden">
+        <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-slate-900 to-slate-700 text-white"><svg class="h-6 w-6" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <h3 class="mt-5 text-xl font-bold">IT-аутсорсинг</h3><p class="mt-2 text-sm text-slate-600">Выделенная команда разработчиков под ваш проект. Гибкие условия.</p>
+        <div class="mt-6 flex items-center justify-between border-t border-slate-100 pt-4"><span class="text-sm font-bold">от 180 000 ₽/мес</span><span class="text-sm font-semibold text-indigo-600">Подробнее →</span></div>
+        <div class="absolute right-4 top-4 text-xs font-bold text-slate-300">06</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ПОРТФОЛИО ===== -->
+<section id="portfolio" class="py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">Портфолио</div>
+      <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Реализованные проекты</h2>
+      <p class="mt-4 text-lg text-slate-600">Более 240 проектов для компаний из разных отраслей</p>
+    </div>
+    <div class="mt-12 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <article class="hover-lift overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <div class="aspect-[16/10] bg-gradient-to-br from-indigo-500 to-blue-600 relative p-5 flex items-center justify-center">
+          <div class="rounded-2xl bg-white/95 p-3 w-4/5 shadow-2xl">
+            <div class="flex gap-1 border-b border-slate-100 pb-2"><span class="h-2 w-2 rounded-full bg-rose-400"/><span class="h-2 w-2 rounded-full bg-amber-400"/><span class="h-2 w-2 rounded-full bg-emerald-400"/></div>
+            <div class="mt-2 space-y-1.5"><div class="h-8 rounded bg-gradient-to-r from-indigo-500 to-blue-600 opacity-80"/><div class="h-2 w-3/4 rounded bg-slate-200"/></div>
+          </div>
+        </div>
+        <div class="p-6"><div class="text-xs font-semibold uppercase text-indigo-600">Веб-приложение</div><h3 class="mt-2 text-lg font-bold">CRM «АлтайТранс»</h3><p class="mt-2 text-sm text-slate-600">Автоматизация логистики: 30% рост производительности.</p></div>
+      </article>
+      <article class="hover-lift overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <div class="aspect-[16/10] bg-gradient-to-br from-amber-500 to-orange-600 relative p-5 flex items-center justify-center">
+          <div class="rounded-2xl bg-white/95 p-3 w-4/5 shadow-2xl">
+            <div class="flex gap-1 border-b border-slate-100 pb-2"><span class="h-2 w-2 rounded-full bg-rose-400"/><span class="h-2 w-2 rounded-full bg-amber-400"/><span class="h-2 w-2 rounded-full bg-emerald-400"/></div>
+            <div class="mt-2 grid grid-cols-2 gap-1"><div class="h-10 rounded bg-gradient-to-r from-amber-500 to-orange-600 opacity-80"/><div class="h-10 rounded bg-slate-100"/></div>
+          </div>
+        </div>
+        <div class="p-6"><div class="text-xs font-semibold uppercase text-indigo-600">E-commerce</div><h3 class="mt-2 text-lg font-bold">«СибирьХлеб»</h3><p class="mt-2 text-sm text-slate-600">Конверсия выросла в 2,4 раза после редизайна.</p></div>
+      </article>
+      <article class="hover-lift overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <div class="aspect-[16/10] bg-gradient-to-br from-emerald-500 to-teal-600 relative p-5 flex items-center justify-center">
+          <div class="rounded-2xl bg-white/95 p-3 w-4/5 shadow-2xl">
+            <div class="flex gap-1 border-b border-slate-100 pb-2"><span class="h-2 w-2 rounded-full bg-rose-400"/><span class="h-2 w-2 rounded-full bg-amber-400"/><span class="h-2 w-2 rounded-full bg-emerald-400"/></div>
+            <div class="mt-2 space-y-1.5"><div class="h-2 w-full rounded bg-slate-200"/><div class="h-8 rounded bg-slate-50"/></div>
+          </div>
+        </div>
+        <div class="p-6"><div class="text-xs font-semibold uppercase text-indigo-600">Веб-приложение</div><h3 class="mt-2 text-lg font-bold">ЛК «БарнаулМед»</h3><p class="mt-2 text-sm text-slate-600">Запись к врачу, анализы. 15 000+ пользователей.</p></div>
+      </article>
+      <article class="hover-lift overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <div class="aspect-[16/10] bg-gradient-to-br from-slate-700 to-slate-900 relative p-5 flex items-center justify-center">
+          <div class="rounded-2xl bg-white/95 p-3 w-4/5 shadow-2xl">
+            <div class="flex gap-1 border-b border-slate-100 pb-2"><span class="h-2 w-2 rounded-full bg-rose-400"/><span class="h-2 w-2 rounded-full bg-amber-400"/><span class="h-2 w-2 rounded-full bg-emerald-400"/></div>
+            <div class="mt-2 h-10 rounded bg-slate-800 opacity-80"/>
+          </div>
+        </div>
+        <div class="p-6"><div class="text-xs font-semibold uppercase text-indigo-600">Сайт</div><h3 class="mt-2 text-lg font-bold">«АлтайСтрой»</h3><p class="mt-2 text-sm text-slate-600">Рост трафика с поисковых систем на 180%.</p></div>
+      </article>
+      <article class="hover-lift overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <div class="aspect-[16/10] bg-gradient-to-br from-fuchsia-500 to-pink-600 relative p-5 flex items-center justify-center">
+          <div class="rounded-2xl bg-white/95 p-3 w-4/5 shadow-2xl">
+            <div class="flex gap-1 border-b border-slate-100 pb-2"><span class="h-2 w-2 rounded-full bg-rose-400"/><span class="h-2 w-2 rounded-full bg-amber-400"/><span class="h-2 w-2 rounded-full bg-emerald-400"/></div>
+            <div class="mt-2 grid grid-cols-3 gap-1"><div class="h-8 rounded bg-slate-100"/><div class="h-8 rounded bg-slate-100"/><div class="h-8 rounded bg-fuchsia-500 opacity-60"/></div>
+          </div>
+        </div>
+        <div class="p-6"><div class="text-xs font-semibold uppercase text-indigo-600">Мобильное</div><h3 class="mt-2 text-lg font-bold">«Ритейл+»</h3><p class="mt-2 text-sm text-slate-600">Программа лояльности. 4,9★ в App Store.</p></div>
+      </article>
+      <article class="hover-lift overflow-hidden rounded-3xl border border-slate-200 bg-white">
+        <div class="aspect-[16/10] bg-gradient-to-br from-violet-500 to-indigo-600 relative p-5 flex items-center justify-center">
+          <div class="rounded-2xl bg-white/95 p-3 w-4/5 shadow-2xl">
+            <div class="flex gap-1 border-b border-slate-100 pb-2"><span class="h-2 w-2 rounded-full bg-rose-400"/><span class="h-2 w-2 rounded-full bg-amber-400"/><span class="h-2 w-2 rounded-full bg-emerald-400"/></div>
+            <div class="mt-2 space-y-1.5"><div class="h-8 rounded bg-violet-500 opacity-60"/><div class="h-2 w-1/2 rounded bg-slate-200"/></div>
+          </div>
+        </div>
+        <div class="p-6"><div class="text-xs font-semibold uppercase text-indigo-600">Веб-приложение</div><h3 class="mt-2 text-lg font-bold">ERP «ТехноСервис»</h3><p class="mt-2 text-sm text-slate-600">Управление производством и складом.</p></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ПРОЦЕСС ===== -->
+<section id="process" class="relative py-20 lg:py-28 bg-gradient-to-b from-white via-indigo-50/30 to-white">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">Процесс</div>
+      <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Как мы работаем</h2>
+      <p class="mt-4 text-lg text-slate-600">Прозрачный 6-этапный процесс — от идеи до запуска</p>
+    </div>
+    <div class="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      <div class="rounded-3xl border border-slate-200 bg-white p-7"><div class="flex items-center justify-between"><div class="text-4xl font-bold text-slate-100">01</div><div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-sm font-bold">1</div></div><h3 class="mt-4 text-lg font-bold">Анализ и стратегия</h3><p class="mt-2 text-sm text-slate-600">Исследуем бизнес, ЦА и конкурентов. Формулируем KPI.</p></div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-7"><div class="flex items-center justify-between"><div class="text-4xl font-bold text-slate-100">02</div><div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-sm font-bold">2</div></div><h3 class="mt-4 text-lg font-bold">Проектирование</h3><p class="mt-2 text-sm text-slate-600">Прототипы, архитектура, ТЗ. Утверждаем с вами.</p></div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-7"><div class="flex items-center justify-between"><div class="text-4xl font-bold text-slate-100">03</div><div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-sm font-bold">3</div></div><h3 class="mt-4 text-lg font-bold">Дизайн интерфейсов</h3><p class="mt-2 text-sm text-slate-600">UI/UX, адаптив, дизайн-система.</p></div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-7"><div class="flex items-center justify-between"><div class="text-4xl font-bold text-slate-100">04</div><div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-sm font-bold">4</div></div><h3 class="mt-4 text-lg font-bold">Разработка</h3><p class="mt-2 text-sm text-slate-600">Чистый код, спринты по 2 недели с демо.</p></div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-7"><div class="flex items-center justify-between"><div class="text-4xl font-bold text-slate-100">05</div><div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-sm font-bold">5</div></div><h3 class="mt-4 text-lg font-bold">Тестирование и запуск</h3><p class="mt-2 text-sm text-slate-600">QA, безопасность, деплой, обучение команды.</p></div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-7"><div class="flex items-center justify-between"><div class="text-4xl font-bold text-slate-100">06</div><div class="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-white text-sm font-bold">6</div></div><h3 class="mt-4 text-lg font-bold">Поддержка и развитие</h3><p class="mt-2 text-sm text-slate-600">Мониторинг, обновления, развитие функционала.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ОТЗЫВЫ ===== -->
+<section id="reviews" class="py-20 lg:py-28">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="text-center">
+      <div class="inline-flex items-center gap-2 rounded-full bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-700">Отзывы</div>
+      <h2 class="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">Что говорят клиенты</h2>
+      <p class="mt-4 text-lg text-slate-600">98% клиентов возвращаются с новыми проектами</p>
+    </div>
+    <div class="mt-14 grid gap-6 md:grid-cols-2">
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 hover-lift">
+        <div class="flex gap-1 text-amber-400"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="mt-4 text-base text-slate-700">«Работаем с Ракурсом 4 года. Разработали CRM, которая перевернула нашу логистику. Команда — профессионалы высокого уровня.»</p>
+        <div class="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5"><div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">АМ</div><div><div class="text-sm font-bold">Алексей Морозов</div><div class="text-xs text-slate-500">Директор, «АлтайТранс»</div></div></div>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 hover-lift">
+        <div class="flex gap-1 text-amber-400"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="mt-4 text-base text-slate-700">«Редизайн интернет-магазина дал взрывной рост конверсии. Отдельное спасибо за внимание к деталям и аналитику.»</p>
+        <div class="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5"><div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">ЕС</div><div><div class="text-sm font-bold">Елена Свиридова</div><div class="text-xs text-slate-500">Маркетинг, «СибирьХлеб»</div></div></div>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 hover-lift">
+        <div class="flex gap-1 text-amber-400"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="mt-4 text-base text-slate-700">«Заказывали мобильное приложение. Сделали в срок, качественно, с учётом всех пожеланий. Пользователи в восторге.»</p>
+        <div class="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5"><div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">ДП</div><div><div class="text-sm font-bold">Дмитрий Петров</div><div class="text-xs text-slate-500">ИП, сеть аптек</div></div></div>
+      </div>
+      <div class="rounded-3xl border border-slate-200 bg-white p-8 hover-lift">
+        <div class="flex gap-1 text-amber-400"><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+        <p class="mt-4 text-base text-slate-700">«Личный кабинет для пациентов — наш главный цифровой проект. Ракурс сделал всё на высшем уровне.»</p>
+        <div class="mt-6 flex items-center gap-3 border-t border-slate-100 pt-5"><div class="flex h-11 w-11 items-center justify-center rounded-full bg-gradient-to-br from-indigo-500 to-violet-500 text-sm font-bold text-white">ОИ</div><div><div class="text-sm font-bold">Ольга Иванова</div><div class="text-xs text-slate-500">Зам. директора, «БарнаулМед»</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== КОНТАКТЫ ===== -->
+<section id="contact" class="relative py-20 lg:py-28 bg-gradient-to-b from-white to-indigo-50/40">
+  <div class="mx-auto max-w-7xl px-6 lg:px-10">
+    <div class="overflow-hidden rounded-[2.5rem] border border-slate-200 bg-white shadow-2xl">
+      <div class="grid lg:grid-cols-5">
+        <div class="relative overflow-hidden bg-gradient-to-br from-slate-900 via-indigo-900 to-violet-900 p-10 text-white lg:col-span-2">
+          <div class="absolute -right-20 -top-20 h-80 w-80 rounded-full bg-gradient-to-br from-indigo-500/30 to-fuchsia-500/20 blur-3xl"></div>
+          <div class="relative">
+            <div class="inline-flex rounded-full bg-white/10 px-3 py-1.5 text-xs font-semibold backdrop-blur">Свяжитесь с нами</div>
+            <h2 class="mt-4 text-3xl font-bold sm:text-4xl">Готовы обсудить ваш проект?</h2>
+            <p class="mt-4 text-white/70">Оставьте заявку — мы свяжемся в течение 15 минут в рабочее время.</p>
+            <div class="mt-10 space-y-5">
+              <div class="flex gap-4"><div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81"/></svg></div><div><div class="text-xs uppercase text-white/50">Телефон</div><div class="text-sm font-semibold">+7 (3852) 12-34-56</div></div></div>
+              <div class="flex gap-4"><div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div><div><div class="text-xs uppercase text-white/50">Email</div><div class="text-sm font-semibold">hello@rakurs.studio</div></div></div>
+              <div class="flex gap-4"><div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/></svg></div><div><div class="text-xs uppercase text-white/50">Офис</div><div class="text-sm font-semibold">г. Барнаул, ул. Молодёжная, 12</div></div></div>
+              <div class="flex gap-4"><div class="flex h-10 w-10 items-center justify-center rounded-xl bg-white/10"><svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div><div class="text-xs uppercase text-white/50">Часы</div><div class="text-sm font-semibold">Пн–Пт: 9:00 — 19:00</div></div></div>
+            </div>
+          </div>
+        </div>
+        <form id="contact-form" class="p-8 sm:p-10 lg:col-span-3 lg:p-12">
+          <h3 class="text-2xl font-bold">Оставить заявку</h3>
+          <p class="mt-2 text-sm text-slate-600">Заполните форму — мы подготовим предложение и рассчитаем стоимость.</p>
+          <div class="mt-8 space-y-5">
+            <div class="grid gap-5 sm:grid-cols-2">
+              <div><label class="mb-2 block text-xs font-semibold uppercase text-slate-600">Имя *</label><input required name="name" type="text" placeholder="Иван Иванов" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10"></div>
+              <div><label class="mb-2 block text-xs font-semibold uppercase text-slate-600">Телефон *</label><input required name="phone" type="tel" placeholder="+7 (___) ___-__-__" class="w-full rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10"></div>
+            </div>
+            <div><label class="mb-2 block text-xs font-semibold uppercase text-slate-600">Тип проекта</label><div class="flex flex-wrap gap-2">
+              <label class="cursor-pointer"><input type="radio" name="type" class="peer sr-only" checked><span class="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700">Веб-приложение</span></label>
+              <label class="cursor-pointer"><input type="radio" name="type" class="peer sr-only"><span class="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700">Сайт</span></label>
+              <label class="cursor-pointer"><input type="radio" name="type" class="peer sr-only"><span class="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700">Мобильное</span></label>
+              <label class="cursor-pointer"><input type="radio" name="type" class="peer sr-only"><span class="inline-flex rounded-full border border-slate-200 bg-white px-4 py-2 text-xs font-semibold peer-checked:border-indigo-500 peer-checked:bg-indigo-50 peer-checked:text-indigo-700">Дизайн</span></label>
+            </div></div>
+            <div><label class="mb-2 block text-xs font-semibold uppercase text-slate-600">Сообщение</label><textarea name="message" rows="3" placeholder="Кратко опишите проект..." class="w-full resize-none rounded-2xl border border-slate-200 px-4 py-3 text-sm focus:border-indigo-500 focus:outline-none focus:ring-4 focus:ring-indigo-500/10"></textarea></div>
+            <div class="flex items-center justify-between pt-2">
+              <label class="flex items-start gap-2 text-xs text-slate-500"><input type="checkbox" checked class="mt-0.5 h-4 w-4 rounded border-slate-300">Согласен с политикой конфиденциальности</label>
+              <button type="submit" class="inline-flex items-center gap-2 rounded-full bg-slate-900 px-7 py-3.5 text-sm font-semibold text-white hover:bg-slate-800 transition">Отправить заявку<svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></button>
+            </div>
+            <div id="form-success" class="hidden rounded-xl bg-emerald-50 p-4 text-sm font-semibold text-emerald-700">✓ Заявка отправлена! Мы свяжемся с вами в течение 15 минут.</div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Отчёт FAB -->
+<a href="report.html" class="fixed bottom-6 right-6 z-40 inline-flex items-center gap-2 rounded-full bg-slate-900 px-4 py-3 text-xs font-semibold text-white shadow-2xl hover:scale-105 transition" style="position:fixed;bottom:24px;right:24px;z-index:9999;">
+  <svg class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
+  Отчёт по практике
+</a>
+
+</main>
+
+<!-- ===== ФУТЕР ===== -->
+<footer class="border-t border-slate-200 bg-white">
+  <div class="mx-auto max-w-7xl px-6 py-12 lg:px-10">
+    <div class="grid gap-10 lg:grid-cols-12">
+      <div class="lg:col-span-4">
+        <a href="#" class="flex items-center gap-2.5">
+          <div class="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 via-violet-500 to-fuchsia-500">
+            <svg viewBox="0 0 24 24" class="h-6 w-6 text-white" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20L12 4l9 16"/><path d="M7 14h10"/></svg>
+          </div>
+          <div><div class="text-base font-bold">Ракурс</div><div class="text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500">Web Studio</div></div>
+        </a>
+        <p class="mt-4 max-w-sm text-sm text-slate-600">ООО «Ракурс» — веб-студия из Барнаула. Разрабатываем современные цифровые продукты с 2012 года.</p>
+      </div>
+      <div class="lg:col-span-2"><div class="text-xs font-semibold uppercase">Компания</div><ul class="mt-4 space-y-2 text-sm text-slate-600"><li><a href="#about" class="hover:text-slate-900">О нас</a></li><li><a href="#services" class="hover:text-slate-900">Услуги</a></li><li><a href="#portfolio" class="hover:text-slate-900">Портфолио</a></li><li><a href="#" class="hover:text-slate-900">Карьера</a></li></ul></div>
+      <div class="lg:col-span-2"><div class="text-xs font-semibold uppercase">Услуги</div><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>Веб-приложения</li><li>Сайты</li><li>Мобильные</li><li>Дизайн</li></ul></div>
+      <div class="lg:col-span-4"><div class="text-xs font-semibold uppercase">Контакты</div><ul class="mt-4 space-y-2 text-sm text-slate-600"><li>г. Барнаул, ул. Молодёжная, 12</li><li>+7 (3852) 12-34-56</li><li>hello@rakurs.studio</li><li>Пн–Пт: 9:00 — 19:00</li></ul></div>
+    </div>
+    <div class="mt-10 flex flex-wrap justify-between gap-4 border-t border-slate-200 pt-6 text-xs text-slate-500">
+      <div>© 2012–2026 ООО «Ракурс»</div>
+      <div class="flex gap-4"><a href="#" class="hover:text-slate-900">Политика конфиденциальности</a><a href="#" class="hover:text-slate-900">Оферта</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+// Scroll nav
+window.addEventListener('scroll', function() {
+  var nav = document.getElementById('nav');
+  if (window.scrollY > 20) { nav.classList.remove('nav-transparent'); nav.classList.add('nav-scrolled'); }
+  else { nav.classList.remove('nav-scrolled'); nav.classList.add('nav-transparent'); }
+});
+
+// Burger
+document.getElementById('burger').addEventListener('click', function() {
+  var m = document.getElementById('mobile-menu');
+  var o = document.getElementById('burger-open');
+  var c = document.getElementById('burger-close');
+  m.classList.toggle('hidden');
+  o.classList.toggle('hidden');
+  c.classList.toggle('hidden');
+});
+
+// Chart bars
+var heights = [40, 65, 48, 80, 55, 92, 70, 98];
+var chart = document.getElementById('chart-bars');
+if (chart) {
+  heights.forEach(function(h) {
+    var d = document.createElement('div');
+    d.className = 'flex-1 rounded-t-md bg-gradient-to-t from-indigo-500 to-violet-400';
+    d.style.height = h + '%';
+    chart.appendChild(d);
+  });
+}
+
+// Form
+var form = document.getElementById('contact-form');
+if (form) {
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+    var s = document.getElementById('form-success');
+    s.classList.remove('hidden');
+    form.reset();
+    setTimeout(function() { s.classList.add('hidden'); }, 5000);
+  });
+}
+</script>
+</body>
+</html>
